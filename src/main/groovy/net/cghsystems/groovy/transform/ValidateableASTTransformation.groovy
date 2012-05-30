@@ -11,20 +11,13 @@ import static org.codehaus.groovy.transform.AbstractASTTransformUtil.hasDeclared
 import static org.codehaus.groovy.transform.AbstractASTTransformUtil.isZeroExpr
 
 import org.codehaus.groovy.ast.ASTNode
-import org.codehaus.groovy.ast.AnnotatedNode
 import org.codehaus.groovy.ast.ClassHelper
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.Parameter
-import org.codehaus.groovy.ast.expr.BinaryExpression
-import org.codehaus.groovy.ast.expr.BooleanExpression
-import org.codehaus.groovy.ast.expr.ConstantExpression
-import org.codehaus.groovy.ast.expr.FieldExpression
-import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.builder.AstBuilder
 import org.codehaus.groovy.control.CompilePhase
 import org.codehaus.groovy.control.SourceUnit
-import org.codehaus.groovy.syntax.Token
-import org.codehaus.groovy.transform.AbstractASTTransformUtil as ASTUtil
 import org.codehaus.groovy.transform.AbstractASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
 
@@ -32,21 +25,26 @@ import org.codehaus.groovy.transform.GroovyASTTransformation
 class ValidateableASTTransformation extends AbstractASTTransformation {
 
     public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
-
-        AnnotatedNode parent = (AnnotatedNode) astNodes[1]
-        def instancePropertyFields = ASTUtil.getInstancePropertyFields(parent)
-
         astNodes[1].addMethod(new MethodNode("isValid", ACC_PUBLIC,
-                ClassHelper.OBJECT_TYPE, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body(instancePropertyFields)))
+                ClassHelper.OBJECT_TYPE, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body()[0]))
     }
 
-    def body(fields) {
-        final COMPARE_EQUAL = Token.newSymbol(Types.COMPARE_EQUAL, -1, -1)
-        BlockStatement body = new BlockStatement()
-        fields.each {
-            def fieldExpression = new FieldExpression(it)
-            body.addStatement(ASTUtil.returnFalseIfNull(new BooleanExpression(new BinaryExpression(fieldExpression, COMPARE_EQUAL, ConstantExpression.NULL))))
+    def body() {
+        new AstBuilder().buildFromCode {
+            final errorFields = []
+            final ignore = ["class", "metaClass"]
+            properties.keySet().collect{ it }.findAll{
+                !ignore.contains(it)
+            }.each {
+                if(properties.get(it) == null) {
+                    errorFields << it
+                }
+            }
+            if(errorFields.size() == 0) {
+                return true
+            }else {
+                return new net.cghsystems.groovy.transform.NotValid(preMessage: "The following fields have not been build correctly: ", invalidFields: errorFields)
+            }
         }
-        body
     }
 }

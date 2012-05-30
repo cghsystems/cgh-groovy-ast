@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="Chris-Hedleys-MacBook-Pro.local" name="net.cghsystems.something.random.ValidateableTest" tests="3" time="0.038" timestamp="2012-05-30T22:13:38">
+  <properties />
+  <testcase classname="net.cghsystems.something.random.ValidateableTest" name="shouldBeInvalidAsNoPropetiesSet" time="0.032" />
+  <testcase classname="net.cghsystems.something.random.ValidateableTest" name="shouldBeInvalidAsOnePropetyIsNotSet" time="0.0" />
+  <testcase classname="net.cghsystems.something.random.ValidateableTest" name="shouldBeValidAsPropetiesSet" time="0.0010" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

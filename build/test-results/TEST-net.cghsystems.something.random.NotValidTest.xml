@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="Chris-Hedleys-MacBook-Pro.local" name="net.cghsystems.something.random.NotValidTest" tests="1" time="0.371" timestamp="2012-05-30T22:13:38">
+  <properties />
+  <testcase classname="net.cghsystems.something.random.NotValidTest" name="shouldBuildMessage" time="0.322" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
