@@ -21,14 +21,27 @@ import org.codehaus.groovy.control.SourceUnit
 import org.codehaus.groovy.transform.AbstractASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
 
+
+/**
+ * Transformation class that adds the isValid method required by {@link Validateable} to the Groovy syntax tree.
+ * 
+ * @author chris
+ *
+ */
 @GroovyASTTransformation(phase = CompilePhase.SEMANTIC_ANALYSIS)
 class ValidateableASTTransformation extends AbstractASTTransformation {
 
+    /* (non-Javadoc)
+     * @see org.codehaus.groovy.transform.ASTTransformation#visit(org.codehaus.groovy.ast.ASTNode[], org.codehaus.groovy.control.SourceUnit)
+     */
     public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
         astNodes[1].addMethod(new MethodNode("isValid", ACC_PUBLIC,
                 ClassHelper.OBJECT_TYPE, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body()[0]))
     }
 
+    /**
+     * @return the {@link BlockStatement} containing the body of the isValidMethod
+     */
     def body() {
         new AstBuilder().buildFromCode {
             final errorFields = []

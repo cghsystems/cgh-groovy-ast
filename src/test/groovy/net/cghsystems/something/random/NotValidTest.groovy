@@ -15,4 +15,10 @@ class NotValidTest {
         unit = new NotValid(preMessage: "PreMessage", invalidFields: ["field1", "field2", "field3"])
         assert unit.getMessage() == "PreMessage field1, field2, field3"
     }
+
+    @Test
+    void shouldBuildMessageWhenNoInvalidFieldsRegistered() {
+        unit = new NotValid(preMessage: "PreMessage ")
+        assert unit.getMessage() == "No Invalid states have been provided"
+    }
 }
