@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" hostname="Chris-Hedleys-MacBook-Pro.local" name="net.cghsystems.something.random.NotValidTest" tests="1" time="0.371" timestamp="2012-05-30T22:13:38">
+<testsuite errors="0" failures="0" hostname="Chris-Hedleys-MacBook-Pro.local" name="net.cghsystems.something.random.NotValidTest" tests="2" time="0.794" timestamp="2012-06-06T21:51:59">
   <properties />
-  <testcase classname="net.cghsystems.something.random.NotValidTest" name="shouldBuildMessage" time="0.322" />
+  <testcase classname="net.cghsystems.something.random.NotValidTest" name="shouldBuildMessage" time="0.745" />
+  <testcase classname="net.cghsystems.something.random.NotValidTest" name="shouldBuildMessageWhenNoInvalidFieldsRegistered" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

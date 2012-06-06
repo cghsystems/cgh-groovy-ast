@@ -1,6 +1,3 @@
-
-
-
 package net.cghsystems.groovy.transform
 
 
@@ -13,6 +10,7 @@ import static org.codehaus.groovy.transform.AbstractASTTransformUtil.isZeroExpr
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassHelper
 import org.codehaus.groovy.ast.ClassNode
+import org.codehaus.groovy.ast.FieldNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.Parameter
 import org.codehaus.groovy.ast.builder.AstBuilder
@@ -20,6 +18,7 @@ import org.codehaus.groovy.control.CompilePhase
 import org.codehaus.groovy.control.SourceUnit
 import org.codehaus.groovy.transform.AbstractASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
+import org.objectweb.asm.Opcodes
 
 
 /**
@@ -31,10 +30,16 @@ import org.codehaus.groovy.transform.GroovyASTTransformation
 @GroovyASTTransformation(phase = CompilePhase.SEMANTIC_ANALYSIS)
 class ValidateableASTTransformation extends AbstractASTTransformation {
 
+    private static final String RETURN_STRATEGY = "rt"
+
     /* (non-Javadoc)
      * @see org.codehaus.groovy.transform.ASTTransformation#visit(org.codehaus.groovy.ast.ASTNode[], org.codehaus.groovy.control.SourceUnit)
      */
     public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
+        def returnStrategy =  astNodes[0].getMember("value")
+        astNodes[1].addField(new FieldNode(RETURN_STRATEGY, Opcodes.ACC_PRIVATE,
+                ClassHelper.OBJECT_TYPE, astNodes[1],returnStrategy))
+
         astNodes[1].addMethod(new MethodNode("isValid", ACC_PUBLIC,
                 ClassHelper.OBJECT_TYPE, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body()[0]))
     }
@@ -53,10 +58,11 @@ class ValidateableASTTransformation extends AbstractASTTransformation {
                     errorFields << it
                 }
             }
+
             if(errorFields.size() == 0) {
                 return true
             }else {
-                return new net.cghsystems.groovy.transform.NotValid(preMessage: "The following fields have not been build correctly: ", invalidFields: errorFields)
+                return rt.validatableReturnStrategy(errorFields)
             }
         }
     }
