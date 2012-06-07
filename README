@@ -1,0 +1,6 @@
+cgh-groovy-ast
+
+A small project containing custom Groovy AST transformations. This allows classes to be decorated with methods at runtime through the use of Annotations.
+
+Currently Supported AST Transformations.
+* Validatable
