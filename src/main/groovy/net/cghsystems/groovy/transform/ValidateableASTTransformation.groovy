@@ -36,11 +36,15 @@ class ValidateableASTTransformation extends AbstractASTTransformation {
      * @see org.codehaus.groovy.transform.ASTTransformation#visit(org.codehaus.groovy.ast.ASTNode[], org.codehaus.groovy.control.SourceUnit)
      */
     public void visit(ASTNode[] astNodes, SourceUnit sourceUnit) {
-        def returnStrategy =  astNodes[0].getMember("value")
-        astNodes[1].addField(new FieldNode(RETURN_STRATEGY, Opcodes.ACC_PRIVATE,
-                ClassHelper.OBJECT_TYPE, astNodes[1],returnStrategy))
+        def annotationNode = astNodes[0] // represents the Annotation that triggered the AST
+        def annotatedNode = astNodes[1] //The class that is annotated
 
-        astNodes[1].addMethod(new MethodNode("isValid", ACC_PUBLIC,
+        def returnStrategy = annotationNode.getMember("value") //The value taken from annotationNode
+
+        annotatedNode.addField(new FieldNode(RETURN_STRATEGY, Opcodes.ACC_PRIVATE,
+                ClassHelper.OBJECT_TYPE, annotatedNode,returnStrategy))
+
+        annotatedNode.addMethod(new MethodNode("isValid", ACC_PUBLIC,
                 ClassHelper.OBJECT_TYPE, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body()[0]))
     }
 
