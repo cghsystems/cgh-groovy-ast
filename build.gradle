@@ -4,7 +4,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 
 group = "net.cghsystems"
-version = "0.0.2"
+version = "0.0.3"
 
 
 repositories {

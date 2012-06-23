@@ -45,7 +45,7 @@ public @interface Validateable {
 
         /** Ensures that isValid returns true for a valid state and a detailed {@link NotValid} value object for an invalid state */ 
         NOT_VALID_FOR_INVALID({ errorFields ->
-            return new NotValid(preMessage: "The following fields have not been build correctly: ", invalidFields: errorFields)
+            return new NotValid(preMessage: "The following fields have not been set correctly: ", invalidFields: errorFields)
         })
 
         private final Closure validatableReturnStrategy
