@@ -9,9 +9,4 @@ through the use of Annotations.
 
 ==== Validatable
 
-[source,perl]
-----
-@net.cghsystems.groocy.transform.Validatable
-----
-
-NOTE:  Something of note
+ - @net.cghsystems.groocy.transform.Validatable
