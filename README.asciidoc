@@ -1,4 +1,4 @@
-= cgh-groovy-ast
+== cgh-groovy-ast
 
 A small project containing custom Groovy AST transformations. 
 This allows classes to be decorated with methods at runtime 
@@ -24,3 +24,5 @@ A return strategy can be configured by providing a ValidatableReturnTypes value 
 
 [NOTE] 
 isValid will always return Boolean.TRUE if the target is deemed valid.
+
+  - Something else
