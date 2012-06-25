@@ -16,6 +16,6 @@ called this will return a boolean value to determine if the target isValid. An o
 determined to be valid if all of its fields are set.
 
 A return strategy can be configured by providing a ValidatableReturnTypes value to @Validatable:
-   - BOOLEAN_FOR_INVALID: Returns false if the target object is deemed not valid
-   - NOT_VALID_FOR_INVALID: Returns an net.cghsystems.groovy.transform.NotValid instance which provides
+  - BOOLEAN_FOR_INVALID: Returns false if the target object is deemed not valid
+  - NOT_VALID_FOR_INVALID: Returns an net.cghsystems.groovy.transform.NotValid instance which provides
      a message detailing the fields not set on the target
