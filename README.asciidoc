@@ -9,7 +9,7 @@ through the use of Annotations.
 
 ==== Validatable
 
-[source,java]
+[source,perl]
 ----
 @net.cghsystems.groocy.transform.Validatable
 ----
