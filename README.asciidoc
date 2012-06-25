@@ -9,6 +9,7 @@ through the use of Annotations.
 
 ==== Validatable
 
+  .An
   1 @net.cghsystems.groocy.transform.Validatable(ValidatableReturnTypes)
 ----
 This Groovy AST annotation will decorate all target objects with an isValid method. When
