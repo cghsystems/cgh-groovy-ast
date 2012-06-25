@@ -10,3 +10,7 @@ through the use of Annotations.
 ==== Validatable
 
  - @net.cghsystems.groocy.transform.Validatable
+
+   THis Groovy AST annotation will decorate all target objects with an isValid method. When
+   called this will return a boolean value to determine if the target isValid. An object is 
+   determined to be valid if all of its fields are set.
