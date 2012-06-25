@@ -10,6 +10,8 @@ through the use of Annotations.
 == Validatable
 
 [source,java]
+----
 @net.cghsystems.groocy.transform.Validatable
+----
 
 NOTE:  Something of note
