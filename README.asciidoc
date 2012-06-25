@@ -7,7 +7,7 @@ through the use of Annotations.
 
 === Currently Supported AST Transformations.
 
-== Validatable
+==== Validatable
 
 [source,java]
 ----
