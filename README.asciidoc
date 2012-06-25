@@ -8,6 +8,10 @@ through the use of Annotations.
 
 == Currently Supported AST Transformations.
 ==================
+
+.Validatable
+
 [source,java]
 @net.cghsystems.groocy.transform.Validatable
+
 NOTE:  Something of note
