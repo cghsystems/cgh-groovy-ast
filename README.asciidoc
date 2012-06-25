@@ -1,4 +1,4 @@
-== cgh-groovy-ast
+== *cgh-groovy-ast*
 
 A small project containing custom Groovy AST transformations. 
 This allows classes to be decorated with methods at runtime 
@@ -11,9 +11,9 @@ through the use of Annotations.
 
   - @net.cghsystems.groocy.transform.Validatable(ValidatableReturnTypes)
 
- This Groovy AST annotation will decorate all target objects with an isValid method. When
- called this will return a configurable type to determine if the target isValid. Currently an 
- object is determined to be valid if all of its fields are set.
+This Groovy AST annotation will decorate all target objects with an isValid method. When
+called this will return a configurable type to determine if the target isValid. Currently an 
+object is determined to be valid if all of its fields are set.
 
 A return strategy can be configured by providing a ValidatableReturnTypes value to @Validatable(ValidatableReturnTypes):
 --
