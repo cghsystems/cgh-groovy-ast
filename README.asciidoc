@@ -6,10 +6,11 @@ This allows classes to be decorated with methods at runtime
 through the use of Annotations.
 
 
-== Currently Supported AST Transformations.
+=== Currently Supported AST Transformations.
 ==================
 
-.Validatable
+== Validatable
+==================
 
 [source,java]
 @net.cghsystems.groocy.transform.Validatable
