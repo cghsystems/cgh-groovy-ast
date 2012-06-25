@@ -21,4 +21,4 @@ A return strategy can be configured by providing a ValidatableReturnTypes value 
   * NOT_VALID_FOR_INVALID: Returns an net.cghsystems.groovy.transform.NotValid instance which provides
      a message detailing the fields not set on the target
 --
-Note: isValid will always return Boolean.TRUE if the target is deemed valid.
+[NOTE] isValid will always return Boolean.TRUE if the target is deemed valid.
